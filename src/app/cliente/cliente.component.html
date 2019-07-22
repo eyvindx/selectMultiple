@@ -1,0 +1,38 @@
+<!--<h3 class="first">Seleccione ingresos economicos</h3>-->
+<p-multiSelect [defaultLabel]="label" [options]="cars" [(ngModel)]="selectedCars1" (onChange)="addFieldValue($event)" [panelStyle]="{minWidth:'12em'}">
+</p-multiSelect><label>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr *ngIf="fieldArray.length > 0">
+            <th>Fecha Verificación</th>
+            <th>Nombre</th>
+            <th>Monto Ingreso</th>
+           
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let field of fieldArray; let i = index">
+            <td>
+              <div class="ui-g-12 ui-md-6">
+               <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" [(ngModel)]="field.fecha" [locale]="es" dateFormat="dd/mm/yy" [name]="i"></p-calendar>    
+              </div>
+            </td>
+            <td>
+                <input [(ngModel)]="field.nombre" class="form-control" type="text" name="{{field.nombre}}" readonly="true"/>
+            </td>
+            <td>
+                <input [(ngModel)]="field.valor" class="form-control" type="text" name="{{field.valor}}" required/>
+            </td>
+            <td>
+                <button class="btn btn-default" type="button" (click)="confirmar(field)">Confirmar valores ingreso</button>
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+</table>
